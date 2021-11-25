@@ -10,6 +10,7 @@ public class Lane {
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
 	private double density;
+	private int timer;
 
 	// TODO : Constructeur(s)
 	public Lane(Game game, int ord, double density) {
@@ -19,24 +20,21 @@ public class Lane {
 		this.cars = new ArrayList<Car>();
 		this.leftToRight = game.randomGen.nextBoolean();
 		this.density = density;
-		//this.timer = 0;
-		for(int i = 0; i < game.width ; ++i) {
-			this.moveCars(true);
-			this.mayAddCar();
-
+		this.timer = 0;
+	}
 		// TODO
 
 		public void update(){
-			if(this.speed < this.timer){
-				this.timer = 0;
-				this.MoveCars(true);
+			timer++;
+			if(timer == speed){
+				this.moveCars();
 				this.mayAddCar();
+				timer = 0;
 			}else{
-				this.MoveCars(false);
+				this.mayAddCar();
 			}
-			this.timer++;
 		}
-		}
+
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
 		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge
@@ -46,33 +44,35 @@ public class Lane {
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
 
-	}
+
 
 	// TODO : ajout de methodes
 
 	public boolean isSafe(Case c){ //Return true si la case cst safe (si il n'y a pas de voiture sur la case c)
-		for(Car c : this.cars) {
-			if (c.isOn(pos))
+		for(Car car : this.cars) {
+			if (car.coversCase(c) == true)
 				return false;
 		}
 		return true;
 	}
 
-	private void moveCars(boolean ok){ //fait avncr les car et ajoutent à lintrface grphique
-		for(Car c : this.cars){
-			c.move(ok);
-	}}
+	private void moveCars() { //fait avncr les car et ajoutent à lintrface grphique
+		for (Car c : this.cars) {
+			c.move();
+		}
+	}
 
 	private void removeOldCars() {  //enleve anciennes voitures
 		ArrayList<Car> toBeRemoved = new ArrayList<>();
 
-		for(Car c : this.cars)
-			if(!c.appearsInBounds()) {
+		for(Car c : this.cars) {
+			if (!c.appearsInBounds()) {
 				toBeRemoved.add(c);
 			}
-
-		for(Car c : toBeRemoved)
+		}
+		for(Car c : toBeRemoved) {
 			this.cars.remove(c);
+		}
 	}
 
 

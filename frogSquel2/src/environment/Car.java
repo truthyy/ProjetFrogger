@@ -8,45 +8,44 @@ public class Car {
 	private Game game;
 	private Case leftPosition;
 	private boolean leftToRight;
-	private int length;
+	private int length = game.randomGen.nextInt(3)+1;
 	private final Color colorLtR = Color.BLACK;
 	private final Color colorRtL = Color.BLUE; //ne peut pas etre changé dans les methodes
 
 	//TODO Constructeur(s)
-	public Car(Game game, Case leftPosition,boolean leftToRight,int length){
+	public Car(Game game, Case leftPosition,boolean leftToRight){
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
-		this.length = length;
 	}
 	//TODO : ajout de methodes
 
-	private int isGoingLeft(){ //si va a droite +1 sinon -1
-		if(this.leftToRight) {
-			return 1; 
+	private int isGoingLeft() { //si elle va en avant +1 sinon reviens en arrière -1
+		if (this.leftToRight) {
+			return 1;
 		}
-
 		return -1;
+	}
 
 
-
-	public void move(boolean b){ //Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
-		int isLeftToRight = this.isGoingLeft();
-		this.leftPosition = new Case(this.leftPosition.absc + isLeftToRight, this.leftPosition.ord); //nouvelle position
-	} //nouvelle position
-		this.addToGraphics();
-}
+	public void move(){ //Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
+			if (!(this.leftPosition.absc > 0 || isGoingLeft() == 1)) {
+				Case c;
+				c = new Case(leftPosition.absc + 1, leftPosition.ord);
+				leftPosition = c;
+			}
 	}
 
 	public boolean appearsInBounds() { // return true si la voiture est dans la grille du game, false sinon
 		return(this.leftPosition.absc < game.width && this.leftPosition.absc + this.length >= 0);
 	}
-	}
+
+
 	public boolean coversCase(Case pos){ //Retrun true si il y a une voiture sur la case c, false sinon
-	if(pos.ord!=this.leftPosition.ord){
+	if(pos.ord!=this.leftPosition.ord && pos.absc!=this.leftPosition.absc && pos.absc <= this.leftPosition.absc+this.length){
 		return false;
 		}else{
-		return pos.absc>=this.leftPosition.absc&&pos.absc< this.leftPosition.absc+this.length; // position superieure
+		return true; // position superieure
 		// à l'ancienne position et nouvelle case inferieur a lancienne position + la longueur
 	}
 		}
