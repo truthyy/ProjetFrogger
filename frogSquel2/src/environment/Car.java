@@ -1,8 +1,5 @@
-package environment;
-
+package frogSquel2.src.environment;
 import java.awt.Color;
-
-import gameCommons.Case;
 import gameCommons.Game;
 import graphicalElements.Element;
 import util.Case;
@@ -45,17 +42,16 @@ public class Car {
 		return(this.leftPosition.absc < game.width && this.leftPosition.absc + this.length >= 0);
 	}
 	}
-
-	public boolean coversCase(Case pos){ //Retrun true si il y a une voiture sur la case c, false sinon.
+	public boolean coversCase(Case pos){ //Retrun true si il y a une voiture sur la case c, false sinon
 	if(pos.ord!=this.leftPosition.ord){
 		return false;
 		}else{
 		return pos.absc>=this.leftPosition.absc&&pos.absc< this.leftPosition.absc+this.length; // position superieure
 		// à l'ancienne position et nouvelle case inferieur a lancienne position + la longueur
+	}
 		}
-		}
-	
-	
+
+
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
 	private void addToGraphics() {
 		for (int i = 0; i < length; i++) {

@@ -1,13 +1,11 @@
-package environment;
-
+package frogSquel2.src.environment;
 import java.util.ArrayList;
-
-import gameCommons.Case;
+import util.Case;
 import gameCommons.Game;
 
 public class Lane {
 	private Game game;
-	private int ord;
+	public int ord;
 	private int speed;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
@@ -21,22 +19,21 @@ public class Lane {
 		this.cars = new ArrayList<Car>();
 		this.leftToRight = game.randomGen.nextBoolean();
 		this.density = density;
-		this.timer = 0;
+		//this.timer = 0;
 		for(int i = 0; i < game.width ; ++i) {
 			this.moveCars(true);
 			this.mayAddCar();
 
 		// TODO
 
-		public void update() {
+		public void update(){
 			if(this.speed < this.timer){
 				this.timer = 0;
 				this.MoveCars(true);
 				this.mayAddCar();
-			} else {
+			}else{
 				this.MoveCars(false);
 			}
-
 			this.timer++;
 		}
 		}

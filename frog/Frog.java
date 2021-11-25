@@ -37,10 +37,10 @@ public class Frog implements IFrog {
 			this.Position = new Case(Position.absc, Position.ord +1);
 		}
 	else if ( key == Direction.left){
-			this.Position = new Case(Position.absc-1, Position.ord));
-		}
+			this.Position = new Case(Position.absc-1, Position.ord);
+	}
 	else if ( key == Direction.right){
-			this.Position = new Case(Position.absc+1, Position.ord));
+			this.Position = new Case(Position.absc+1, Position.ord);
 		}
 
 

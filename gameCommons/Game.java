@@ -45,7 +45,7 @@ public class Game {
 	}
 
 	/**
-	 * Lie l'objet frog � la partie
+	 * Lie l'objet frog à la partie
 	 * 
 	 * @param frog
 	 */
@@ -78,7 +78,7 @@ public class Game {
 	 */
 	public boolean testLose() {
 		// TODO
-	if (!this.environment.isSafe(this.frog.getPosition()) {
+	if (!this.environment.isSafe(this.frog.getPosition())){
 			this.graphic.endGameScreen("perdu" );
 			return true;
 	}else{
@@ -94,13 +94,13 @@ public class Game {
 	 */
 	public boolean testWin() {
 		// TODO
-		if (!this.environment.isSafe(this.frog.getPosition()) {
+		if (this.environment.isWinningPosition(this.frog.getPosition())) {
 			this.graphic.endGameScreen("gagné" );
 			return true;
 		}else{
 			return false;
 		}
-	}
+
 	}
 
 	/**

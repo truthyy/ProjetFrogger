@@ -1,22 +1,22 @@
-package environment;
+package frogSquel2.src.environment;
 
 import java.util.ArrayList;
 
-import gameCommons.Case;
+import util.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
     //TODO
     private Game game;
-    private ArrayList<Lane> nbOfLanes;
+    private ArrayList<Lane> lane;
 
     public Environment(Game game) {
         this.game = game;
         this.lane = new ArrayList<>();
 
         for (int i = 1; i < game.height - 1; i++) {
-            this.lanes.add(new Lane(game, i));
+            this.lane.add(new Lane(game, i,game.defaultDensity));
         }
     }
     private ArrayList<Lane> initializeLaneInf(){
@@ -32,7 +32,7 @@ public class Environment implements IEnvironment {
 
 
     public boolean isSafe(Case c) {
-        for (Lane l : this.numberOfLanes) {
+        for (Lane l : this.lane) {
             if (l.ord == c.ord)
                 return l.isSafe(c);
         }
@@ -44,7 +44,7 @@ public class Environment implements IEnvironment {
     }
 
     public void update() {
-        for (Lane l : this.numberOfLanes)
+        for (Lane l : this.lane)
             l.update();
     }
 }
