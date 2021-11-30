@@ -27,14 +27,12 @@ public class Lane {
 		public void update(){
 			timer++;
 			if(timer == speed){
-				this.moveCars();
+				this.moveCars(true);
 				this.mayAddCar();
 				timer = 0;
 			}else{
 				this.mayAddCar();
-				for(int i = 0; i < cars.size() ; i++){ //afficher pr tt les voitures qui bougent pas aussi
-					cars.get(i).addCarGraphic();
-				}
+				this.moveCars(false);
 			}
 		}
 
@@ -59,10 +57,10 @@ public class Lane {
 		return true;
 	}
 
-	private void moveCars() { //fait avncr les car et ajoutent à lintrface grphique
+	private void moveCars(boolean bouge) { //fait avancer les car et ajoutent à lintrface grphique
 		for (Car c : this.cars) {
-			c.move();
-		}
+			c.move(bouge);
+		}removeOldCars();
 	}
 
 	private void removeOldCars() {  //enleve anciennes voitures

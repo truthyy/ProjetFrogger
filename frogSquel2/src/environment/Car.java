@@ -15,7 +15,14 @@ public class Car {
 	//TODO Constructeur(s)
 	public Car(Game game, Case leftPosition,boolean leftToRight){
 		this.game = game;
-		this.leftPosition = leftPosition;
+		if (isGoingLeft() == 1){
+			this.leftPosition = leftPosition;
+			this.leftPosition = new Case(leftPosition.absc - length,leftPosition.ord);
+		}
+		if (!(isGoingLeft() == 1)){
+			this.leftPosition = leftPosition;
+			this.leftPosition = new Case(leftPosition.absc,leftPosition.ord);
+		}
 		this.leftToRight = leftToRight;
 		this.length = game.randomGen.nextInt(3)+1;
 	}
@@ -29,13 +36,13 @@ public class Car {
 	}
 
 
-	public void move(){ //Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
-			if (!(this.leftPosition.absc > 0 || isGoingLeft() == 1)) {
+	public void move(boolean bouge){ //Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
+		if (bouge == true){
 				Case c;
 				c = new Case(leftPosition.absc + 1, leftPosition.ord);
 				leftPosition = c;
 			}
-		if (!(this.leftPosition.ord > 0 || !(isGoingLeft() == 1))) {
+			 if (bouge == false){
 			Case c;
 			c = new Case(leftPosition.absc - 1, leftPosition.ord);
 			leftPosition = c;
