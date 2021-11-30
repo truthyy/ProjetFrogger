@@ -1,12 +1,9 @@
 package gameCommons;
-
+package frogSquel2.src.environment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Timer;
-
 import frog.Frog;
-import givenEnvironment.GivenEnvironment;
 import graphicalElements.FroggerGraphic;
 import graphicalElements.IFroggerGraphics;
 

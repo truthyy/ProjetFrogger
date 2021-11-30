@@ -34,7 +34,7 @@ public class Environment implements IEnvironment {
     public boolean isSafe(Case c) {
         for (Lane l : this.lane) {
             if (l.ord == c.ord)
-                return l.isSafe(c);
+                return l.isSafe(c); // on peut mettre true a la place ??
         }
         return false;
     }
