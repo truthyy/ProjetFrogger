@@ -31,7 +31,6 @@ public class Lane {
 				this.mayAddCar();
 				timer = 0;
 			}else{
-				this.mayAddCar();
 				this.moveCars(false);
 			}
 		}

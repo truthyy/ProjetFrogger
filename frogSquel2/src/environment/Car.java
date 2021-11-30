@@ -36,16 +36,17 @@ public class Car {
 	}
 
 
-	public void move(boolean bouge){ //Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
-		if (bouge == true){
+	public void move(boolean bouge){//Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
+		if(bouge){
+		if (leftToRight){
 				Case c;
 				c = new Case(leftPosition.absc + 1, leftPosition.ord);
 				leftPosition = c;
-			}
-			 if (bouge == false){
+			}else{
 			Case c;
 			c = new Case(leftPosition.absc - 1, leftPosition.ord);
 			leftPosition = c;
+			}
 		}
 			addToGraphics();
 	}
