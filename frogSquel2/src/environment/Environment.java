@@ -35,11 +35,7 @@ public class Environment implements IEnvironment {
 
 
     public boolean isSafe(Case c) {
-        for (Lane l : this.lane) {
-            if (l.ord == c.ord)
-                return l.isSafe(c);
-        }
-        return false;
+                return lane.get(c.ord).isSafe(c);
     }
 
     public boolean isWinningPosition(Case c) {

@@ -35,6 +35,11 @@ public class Car {
 				c = new Case(leftPosition.absc + 1, leftPosition.ord);
 				leftPosition = c;
 			}
+		if (!(this.leftPosition.ord > 0 || !(isGoingLeft() == 1))) {
+			Case c;
+			c = new Case(leftPosition.absc - 1, leftPosition.ord);
+			leftPosition = c;
+		}
 			addToGraphics();
 	}
 
@@ -55,6 +60,7 @@ public class Car {
 		public void addCarGraphic(){
 			this.addToGraphics();
 		}
+
 
 
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
