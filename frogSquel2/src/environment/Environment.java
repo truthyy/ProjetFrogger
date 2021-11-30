@@ -15,12 +15,12 @@ public class Environment implements IEnvironment {
         this.game = game;
         this.lane = new ArrayList<>();
 
-        this.lane.add(new Lane(game, 0,game.defaultDensity));
+        this.lane.add(new Lane(game, 0,0.));
 
         for (int i = 1; i < game.height - 1; i++) {
             this.lane.add(new Lane(game, i,game.defaultDensity));
         }
-        this.lane.add(new Lane(game, game.height,game.defaultDensity));
+        this.lane.add(new Lane(game, game.height,0.));
     }
     private ArrayList<Lane> initializeLaneInf(){
         ArrayList<Lane> initialized = new ArrayList<>();
