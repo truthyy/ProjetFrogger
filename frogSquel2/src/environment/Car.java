@@ -8,7 +8,7 @@ public class Car {
 	private Game game;
 	private Case leftPosition;
 	private boolean leftToRight;
-	private int length = game.randomGen.nextInt(3)+1;
+	private int length;
 	private final Color colorLtR = Color.BLACK;
 	private final Color colorRtL = Color.BLUE; //ne peut pas etre changé dans les methodes
 
@@ -17,6 +17,7 @@ public class Car {
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
+		this.length = game.randomGen.nextInt(3)+1;
 	}
 	//TODO : ajout de methodes
 
@@ -34,6 +35,7 @@ public class Car {
 				c = new Case(leftPosition.absc + 1, leftPosition.ord);
 				leftPosition = c;
 			}
+			addToGraphics();
 	}
 
 	public boolean appearsInBounds() { // return true si la voiture est dans la grille du game, false sinon
@@ -48,6 +50,10 @@ public class Car {
 		return true; // position superieure
 		// à l'ancienne position et nouvelle case inferieur a lancienne position + la longueur
 	}
+		}
+
+		public void addCarGraphic(){
+			this.addToGraphics();
 		}
 
 

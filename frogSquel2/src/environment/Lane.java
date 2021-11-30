@@ -7,7 +7,7 @@ public class Lane {
 	private Game game;
 	public int ord;
 	private int speed;
-	private ArrayList<Car> cars = new ArrayList<>();
+	private ArrayList<Car> cars;
 	private boolean leftToRight;
 	private double density;
 	private int timer;
@@ -17,7 +17,7 @@ public class Lane {
 		this.game = game;
 		this.ord = ord;
 		this.speed = game.randomGen.nextInt(1);
-		this.cars = new ArrayList<Car>();
+		this.cars = new ArrayList<>();
 		this.leftToRight = game.randomGen.nextBoolean();
 		this.density = density;
 		this.timer = 0;
@@ -32,6 +32,9 @@ public class Lane {
 				timer = 0;
 			}else{
 				this.mayAddCar();
+				//for(int i = 0; i < cars.size() ; i++){ //afficher pr tt les voitures
+					//cars.addCarGraphic();
+				//}
 			}
 		}
 

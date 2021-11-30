@@ -15,9 +15,12 @@ public class Environment implements IEnvironment {
         this.game = game;
         this.lane = new ArrayList<>();
 
+        this.lane.add(new Lane(game, 0,game.defaultDensity));
+
         for (int i = 1; i < game.height - 1; i++) {
             this.lane.add(new Lane(game, i,game.defaultDensity));
         }
+        this.lane.add(new Lane(game, game.height,game.defaultDensity));
     }
     private ArrayList<Lane> initializeLaneInf(){
         ArrayList<Lane> initialized = new ArrayList<>();
@@ -34,7 +37,7 @@ public class Environment implements IEnvironment {
     public boolean isSafe(Case c) {
         for (Lane l : this.lane) {
             if (l.ord == c.ord)
-                return l.isSafe(c); // on peut mettre true a la place ??
+                return l.isSafe(c);
         }
         return false;
     }
