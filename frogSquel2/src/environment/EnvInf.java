@@ -1,17 +1,16 @@
 package frogSquel2.src.environment;
 
-import java.util.ArrayList;
-
-import util.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
+import util.Case;
 
-public class Environment implements IEnvironment {
-    //TODO
+import java.util.ArrayList;
+
+public class EnvInf implements IEnvironment{
     private Game game;
     private ArrayList<Lane> lane;
 
-    public Environment(Game game) {
+    public EnvInf(Game game) {
         this.game = game;
         this.lane = new ArrayList<>();
 
@@ -20,7 +19,7 @@ public class Environment implements IEnvironment {
         for (int i = 1; i < game.height - 1; i++) {
             this.lane.add(new Lane(game, i,game.defaultDensity));
         }
-        this.lane.add(new Lane(game, game.height,0.));
+        this.lane.add(new Lane(game, game.height, game.defaultDensity));
     }
     private ArrayList<Lane> initializeLaneInf(){
         ArrayList<Lane> initialized = new ArrayList<>();
@@ -35,11 +34,11 @@ public class Environment implements IEnvironment {
 
 
     public boolean isSafe(Case c) {
-                return lane.get(c.ord).isSafe(c);
+        return lane.get(c.ord).isSafe(c);
     }
 
     public boolean isWinningPosition(Case c) {
-      return (c.ord == this.game.height - 1);
+        return false;
     }
 
     public void update() {
@@ -47,10 +46,14 @@ public class Environment implements IEnvironment {
             l.update();
     }
 
-    @Override
     public ArrayList<Lane> getLane() {
-        return null;
+        return lane;
     }
+
+    public void majAllLanes() {
+        for (int i = 0; i <= lane.size(); i++) {
+            lane.get(i).majLane(i-1);
+        }
+    }
+
 }
-
-

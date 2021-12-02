@@ -11,6 +11,7 @@ public class Frog implements IFrog {
 	private Case Position; //dans quelle partie il se trouve
 	private Direction Direct;
 	public Frog(Game game) {
+		this.game = game;
 		this.Position = new Case(0,0);
 	}
 

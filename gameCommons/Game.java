@@ -4,6 +4,7 @@ package gameCommons;
 import java.awt.Color;
 import java.util.Random;
 
+import frogSquel2.src.environment.Environment;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
@@ -113,6 +114,10 @@ public class Game {
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
 		testLose();
 		testWin();
+	}
+
+	public IEnvironment getEnvinf(){
+		return environment;
 	}
 
 }

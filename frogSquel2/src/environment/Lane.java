@@ -107,4 +107,14 @@ public class Lane {
 			return new Case(game.width, ord);
 	}
 
+public void majAllCars(Case pos){
+		for(int i = 0; i <= cars.size(); i++){
+			cars.get(i).majCar(pos);
+		}
+}
+	public void majLane(int newOrd){
+		ord = newOrd;
+	}
+
+
 }

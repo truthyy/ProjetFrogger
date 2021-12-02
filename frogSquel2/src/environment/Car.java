@@ -15,16 +15,13 @@ public class Car {
 	//TODO Constructeur(s)
 	public Car(Game game, Case leftPosition,boolean leftToRight){
 		this.game = game;
+		this.length = game.randomGen.nextInt(3)+1;
+		this.leftToRight = leftToRight;
 		if (isGoingLeft() == 1){
-			this.leftPosition = leftPosition;
 			this.leftPosition = new Case(leftPosition.absc - length,leftPosition.ord);
-		}
-		if (!(isGoingLeft() == 1)){
-			this.leftPosition = leftPosition;
+		}else{
 			this.leftPosition = new Case(leftPosition.absc,leftPosition.ord);
 		}
-		this.leftToRight = leftToRight;
-		this.length = game.randomGen.nextInt(3)+1;
 	}
 	//TODO : ajout de methodes
 
@@ -38,7 +35,7 @@ public class Car {
 
 	public void move(boolean bouge){//Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
 		if(bouge){
-		if (leftToRight){
+			if (leftToRight){
 				Case c;
 				c = new Case(leftPosition.absc + 1, leftPosition.ord);
 				leftPosition = c;
@@ -52,19 +49,17 @@ public class Car {
 	}
 
 	public boolean appearsInBounds() { // return true si la voiture est dans la grille du game, false sinon
-		return(this.leftPosition.absc < game.width && this.leftPosition.absc + this.length >= 0);
+		return(this.leftPosition.absc < game.width || this.leftPosition.absc + this.length > 0);
 	}
 
 
-	public boolean coversCase(Case pos){ //Retrun true si il y a une voiture sur la case c, false sinon
-	if(pos.ord!=this.leftPosition.ord && pos.absc!=this.leftPosition.absc && pos.absc <= this.leftPosition.absc+this.length){
-		return false;
-		}else{
-		return true; // position superieure
-		// à l'ancienne position et nouvelle case inferieur a lancienne position + la longueur
-	}
+	public boolean coversCase(Case pos) { //Retrun true si il y a une voiture sur la case c, false sinon
+		if (pos.ord != this.leftPosition.ord) {
+			return false;
+		} else {
+			return pos.absc >= this.leftPosition.absc && pos.absc < this.leftPosition.absc + this.length;
 		}
-
+	}
 		public void addCarGraphic(){
 			this.addToGraphics();
 		}
@@ -80,6 +75,10 @@ public class Car {
 			}
 			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
 		}
+	}
+
+	public void majCar(Case pos){
+			leftPosition = pos;
 	}
 
 }
