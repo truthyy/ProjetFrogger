@@ -10,16 +10,15 @@ public interface IEnvironment {
 	/**
 	 * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
 	 * sans mourir
-	 * 
-	 * @param c
-	 *            la case � tester
+	 *
+	 * @param c la case � tester
 	 * @return vrai s'il n'y a pas danger
 	 */
 	public boolean isSafe(Case c);
 
 	/**
 	 * Teste si la case est une case d'arrivee
-	 * 
+	 *
 	 * @param c
 	 * @return vrai si la case est une case de victoire
 	 */
@@ -33,6 +32,4 @@ public interface IEnvironment {
 	public ArrayList<Lane> getLane();
 
 	public void majAllLanes();
-	public void majAllCars(Case pos);
-
 }

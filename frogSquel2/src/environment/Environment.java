@@ -51,6 +51,13 @@ public class Environment implements IEnvironment {
     public ArrayList<Lane> getLane() {
         return null;
     }
+
+    @Override
+    public void majAllLanes() {
+
+    }
+
+
 }
 
 

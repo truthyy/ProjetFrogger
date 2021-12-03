@@ -1,51 +1,53 @@
 package frog;
-import frogSquel2.src.environment.EnvInf;
-import frogSquel2.src.environment.Environment;
 import frogSquel2.src.environment.Lane;
 import gameCommons.IFrog;
+import graphicalElements.Element;
 import util.Case;
 import util.Direction;
 import gameCommons.Game;
 
+import java.awt.*;
+
 public class FrogInf implements IFrog {
     private Game game;
-    private Case Position; //dans quelle partie il se trouve
-    private Direction Direct;
+    private Case position; //dans quelle partie il se trouve
+    private Direction direct;
 
     public FrogInf(Game game) {
         this.game = game;
-        this.Position = new Case(0,0);
-        this.Direct = Direction.left;
+        this.position = new Case(0,0);
+        this.direct = Direction.left;
     }
 
     @Override
     public Case getPosition() { //donne la position actuelle de la grenouille
-        return Position;
+        return position;
     }
 
     @Override
     public Direction getDirection() {
-        return Direct; //donne direction actuelle de la grenouille
+        return direct; //donne direction actuelle de la grenouille
     }
 
     @Override
     public void move(Direction key) { // on veut modifier la direction de la grenouille et mettre a jour la case
 
         if ( key == Direction.down){
-            this.Position = new Case(Position.absc, Position.ord -1);
+            this.position = new Case(position.absc, position.ord -1);
         }
         else if ( key == Direction.up){
-            this.Position = new Case(Position.absc, Position.ord +1);
-            game.getEnvinf().getLane().add(new Lane(game, game.height, game.defaultDensity));
-            game.getEnvinf().majAllLanes();
-            game.getEnvinf().majAllCars();
-
+            //game.getEnvinf().majAllLanes();
+            game.getEnvinf().getLane().add(new Lane(game, game.getEnvinf().getLane().size(), game.defaultDensity));
+            this.position = new Case(position.absc, position.ord +1);
+            /*System.out.println(position.absc + ", " + position.ord+"\n");
+            for(Lane l : game.getEnvinf().getLane())
+                System.out.println(l.getOrd());*/
         }
         else if ( key == Direction.left){
-            this.Position = new Case(Position.absc-1, Position.ord);
+            this.position = new Case(position.absc-1, position.ord);
         }
         else if ( key == Direction.right){
-            this.Position = new Case(Position.absc+1, Position.ord);
+            this.position = new Case(position.absc+1, position.ord);
         }
     }
 }

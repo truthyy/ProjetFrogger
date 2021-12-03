@@ -50,7 +50,7 @@ public class Lane {
 
 	public boolean isSafe(Case c){ //Return true si la case cst safe (si il n'y a pas de voiture sur la case c)
 		for(Car car : this.cars) {
-			if (car.coversCase(c) == true)
+			if (car.coversCase(c))
 				return false;
 		}
 		return true;
@@ -107,14 +107,23 @@ public class Lane {
 			return new Case(game.width, ord);
 	}
 
-public void majAllCars(Case pos){
-		for(int i = 0; i <= cars.size(); i++){
-			cars.get(i).majCar(pos);
+public void majAllCars(){
+		for(int i = 0; i < cars.size(); i++){
+			cars.get(i).majCar();
 		}
 }
-	public void majLane(int newOrd){
-		ord = newOrd;
+	public void majLane(){
+		ord = ord - 1;
 	}
 
+	public int getOrd() {
+		return ord;
+	}
 
+	public String toString(){
+		String res = "";
+		for(Car c : cars)
+			res+=c.toString()+ "/ ";
+		return res;
+	}
 }

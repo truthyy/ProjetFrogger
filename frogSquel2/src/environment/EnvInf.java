@@ -16,12 +16,12 @@ public class EnvInf implements IEnvironment{
 
         this.lane.add(new Lane(game, 0,0.));
 
-        for (int i = 1; i < game.height - 1; i++) {
+        for (int i = 1; i <= game.height - 1; i++) {
             this.lane.add(new Lane(game, i,game.defaultDensity));
         }
         this.lane.add(new Lane(game, game.height, game.defaultDensity));
     }
-    private ArrayList<Lane> initializeLaneInf(){
+    /*private ArrayList<Lane> initializeLaneInf(){
         ArrayList<Lane> initialized = new ArrayList<>();
         initialized.add(new Lane(game, 0, 0));
         initialized.add(new Lane(game, 1, 0));
@@ -30,7 +30,7 @@ public class EnvInf implements IEnvironment{
             initialized.add(new Lane(game, i, this.game.defaultDensity));
         }
         return initialized;
-    }
+    }*/
 
 
     public boolean isSafe(Case c) {
@@ -51,9 +51,13 @@ public class EnvInf implements IEnvironment{
     }
 
     public void majAllLanes() {
-        for (int i = 0; i <= lane.size(); i++) {
-            lane.get(i).majLane(i-1);
+        for (int i = 0; i < lane.size(); i++) {
+            //lane.get(i).majLane();
+            lane.get(i).majAllCars();
+            // System.out.println(lane.get(i).getOrd() +": "+lane.get(i).toString()+"\n");
         }
     }
+
+
 
 }

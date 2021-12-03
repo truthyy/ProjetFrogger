@@ -80,7 +80,7 @@ public class Game {
 	public boolean testLose() {
 		// TODO
 	if (!this.environment.isSafe(this.frog.getPosition())){
-			this.graphic.endGameScreen("perdu" );
+			this.graphic.endGameScreen("perdu\n"+"Score = "+frog.getPosition().ord);
 			return true;
 	}else{
 		return false;
@@ -113,7 +113,7 @@ public class Game {
 		environment.update();
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
 		testLose();
-		testWin();
+		//testWin();
 	}
 
 	public IEnvironment getEnvinf(){

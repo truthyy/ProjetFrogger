@@ -77,8 +77,11 @@ public class Car {
 		}
 	}
 
-	public void majCar(Case pos){
-			leftPosition = pos;
+	public void majCar(){
+		leftPosition = new Case(leftPosition.absc, leftPosition.ord - 1);
 	}
 
+	public String toString(){
+		return leftPosition.absc+ ", "+leftPosition;
+	}
 }
