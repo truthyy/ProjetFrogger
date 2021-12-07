@@ -50,12 +50,15 @@ public class EnvInf implements IEnvironment{
         return lane;
     }
 
-    public void majAllLanes() {
+    public void majAllLanes() { //AP
+        game.getEnvinf().getLane().add(new Lane(game, lane.size(), game.defaultDensity)); //ajout avant sinon mm ordonnee
+
         for (int i = 0; i < lane.size(); i++) {
-            //lane.get(i).majLane();
+            lane.get(i).majLane();
             lane.get(i).majAllCars();
             // System.out.println(lane.get(i).getOrd() +": "+lane.get(i).toString()+"\n");
         }
+        lane.remove(lane.get(0)); //on enlève la lane -1
     }
 
 

@@ -16,15 +16,21 @@ public class Lane {
 	public Lane(Game game, int ord, double density) {
 		this.game = game;
 		this.ord = ord;
-		this.speed = game.randomGen.nextInt(2);
+		this.speed = game.randomGen.nextInt(2)+1; //AP
 		this.cars = new ArrayList<>();
 		this.leftToRight = game.randomGen.nextBoolean();
 		this.density = density;
 		this.timer = 0;
+
+		for(int i = 0 ;i < 10; i++){ //AP  essayer davoir une chance parmi les 10
+			moveCars(true); //pour des voitures des le debut
+			mayAddCar();
+		}
+
 	}
 		// TODO
 
-		public void update(){
+		public void update(){ //AP
 			timer++;
 			if(timer == speed){
 				this.moveCars(true);
@@ -56,7 +62,7 @@ public class Lane {
 		return true;
 	}
 
-	private void moveCars(boolean bouge) { //fait avancer les car et ajoutent à lintrface grphique
+	private void moveCars(boolean bouge) { //AP fait avancer les car et ajoutent à lintrface grphique
 		for (Car c : this.cars) {
 			c.move(bouge);
 		}removeOldCars();
@@ -112,7 +118,7 @@ public void majAllCars(){
 			cars.get(i).majCar();
 		}
 }
-	public void majLane(){
+	public void majLane(){ //AP P3
 		ord = ord - 1;
 	}
 

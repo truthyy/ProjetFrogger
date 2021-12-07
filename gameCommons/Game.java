@@ -1,10 +1,11 @@
 package gameCommons;
-
-
 import java.awt.Color;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import frogSquel2.src.environment.Environment;
+import frog.Frog;
+import frog.FrogInf;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
@@ -17,7 +18,8 @@ public class Game {
 	public final int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
-
+	private Timer t = new Timer(); //Ajout timer  AP
+	int temps = 0;
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
 	private IFrog frog;
@@ -43,6 +45,12 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		t.schedule(new TimerTask() { //AP
+			@Override
+			public void run() {
+				temps++;
+			}
+		}, 1000, 1000); //milisecondes
 	}
 
 	/**
@@ -77,13 +85,19 @@ public class Game {
 	 * 
 	 * @return true si le partie est perdue
 	 */
-	public boolean testLose() {
+	public boolean testLose() { //AP
 		// TODO
 	if (!this.environment.isSafe(this.frog.getPosition())){
-			this.graphic.endGameScreen("perdu\n"+"Score = "+frog.getPosition().ord);
-			return true;
+		if(frog instanceof Frog)
+			this.graphic.endGameScreen("perdu, "+"Score = "+frog.getPosition().ord); //grenouille fixe
+		else {
+			FrogInf test = (FrogInf) frog;  //on fait un cast
+			t.cancel();
+			this.graphic.endGameScreen("perdu, " + "temps = " + temps+"s"+"/Score = "+test.getScore());
+		}
+			return true; //perdu
 	}else{
-		return false;
+		return false; //pas perdu
 	}
 	}
 
@@ -113,11 +127,13 @@ public class Game {
 		environment.update();
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
 		testLose();
-		//testWin();
+		if (frog instanceof Frog) //Ajout de cette condition sinon partie normale non fonctionnelle
+			testWin();
 	}
 
 	public IEnvironment getEnvinf(){
 		return environment;
 	}
+
 
 }

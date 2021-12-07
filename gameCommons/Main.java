@@ -25,12 +25,12 @@ public class Main {
 		//Cr�ation de la partie
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Cr�ation et liason de la grenouille
-		IFrog frog = new FrogInf(game);
+		IFrog frog = new FrogInf(game); //pour partie fixe, Frog
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement
 		//IEnvironment env = new GivenEnvironment(game);
-		IEnvironment env = new EnvInf(game);
+		IEnvironment env = new EnvInf(game); //pour partie fixe; Environnement
 		game.setEnvironment(env);
 				
 		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes

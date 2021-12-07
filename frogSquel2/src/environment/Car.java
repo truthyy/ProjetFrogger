@@ -33,7 +33,7 @@ public class Car {
 	}
 
 
-	public void move(boolean bouge){//Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
+	public void move(boolean bouge){// AP Si "true", fait avancer la voiture. Affiche la voiture dans tout les cas
 		if(bouge){
 			if (leftToRight){
 				Case c;
@@ -48,18 +48,19 @@ public class Car {
 			addToGraphics();
 	}
 
-	public boolean appearsInBounds() { // return true si la voiture est dans la grille du game, false sinon
+	public boolean appearsInBounds() { //return true si la voiture est dans la grille du game, false sinon
 		return(this.leftPosition.absc < game.width || this.leftPosition.absc + this.length > 0);
 	}
 
 
-	public boolean coversCase(Case pos) { //Retrun true si il y a une voiture sur la case c, false sinon
+	public boolean coversCase(Case pos) { //AP Retrun true si il y a une voiture sur la case c, false sinon
 		if (pos.ord != this.leftPosition.ord) {
 			return false;
 		} else {
 			return pos.absc >= this.leftPosition.absc && pos.absc < this.leftPosition.absc + this.length;
 		}
 	}
+
 		public void addCarGraphic(){
 			this.addToGraphics();
 		}
@@ -79,7 +80,7 @@ public class Car {
 
 	public void majCar(){
 		leftPosition = new Case(leftPosition.absc, leftPosition.ord - 1);
-	}
+	} //AP P3
 
 	public String toString(){
 		return leftPosition.absc+ ", "+leftPosition;

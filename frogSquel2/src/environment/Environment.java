@@ -15,24 +15,13 @@ public class Environment implements IEnvironment {
         this.game = game;
         this.lane = new ArrayList<>();
 
-        this.lane.add(new Lane(game, 0,0.));
+        this.lane.add(new Lane(game, 0,0.)); //AP
 
-        for (int i = 1; i < game.height - 1; i++) {
+        for (int i = 1; i <= game.height - 1; i++) {
             this.lane.add(new Lane(game, i,game.defaultDensity));
         }
         this.lane.add(new Lane(game, game.height,0.));
     }
-    private ArrayList<Lane> initializeLaneInf(){
-        ArrayList<Lane> initialized = new ArrayList<>();
-        initialized.add(new Lane(game, 0, 0));
-        initialized.add(new Lane(game, 1, 0));
-
-        for(int i = 2; i < this.game.height; i++){
-            initialized.add(new Lane(game, i, this.game.defaultDensity));
-        }
-        return initialized;
-    }
-
 
     public boolean isSafe(Case c) {
                 return lane.get(c.ord).isSafe(c);
